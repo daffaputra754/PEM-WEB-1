@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Registration Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .row > div {
+      flex: 1;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .section-title {
+      font-weight: 700;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    .agree {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 15px 0;
+      color: #555;
+    }
+
+    button {
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    @media (max-width: 480px) {
+      .row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Event Registration Form</h2>
+    <p>Please fill out the form below to register for the event.</p>
+
+    <form>
+      <div class="row">
+        <div>
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="John" required>
+        </div>
+        <div>
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Doe" required>
+        </div>
+      </div>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="john.doe@example.com" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+
+      <div class="row">
+        <div>
+          <label for="country">Country</label>
+          <select id="country" required>
+            <option value="">Select Country</option>
+            <option>United States</option>
+            <option>Indonesia</option>
+            <option>United Kingdom</option>
+            <option>Australia</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" required>
+        </div>
+      </div>
+
+      <label>T-Shirt Size</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="size"> Small</label>
+        <label><input type="checkbox" name="size"> Medium</label>
+        <label><input type="checkbox" name="size"> Large</label>
+        <label><input type="checkbox" name="size"> Extra Large</label>
+      </div>
+
+      <div class="section-title">Emergency Contact Information</div>
+
+      <label for="emergencyName">Emergency Contact Name</label>
+      <input type="text" id="emergencyName" placeholder="Jane Smith" required>
+
+      <label for="emergencyPhone">Emergency Contact Phone Number</label>
+      <input type="tel" id="emergencyPhone" placeholder="+1 (555) 123-4567" required>
+
+      <div class="agree">
+        <input type="checkbox" id="agree" required>
+        <label for="agree">I agree to the terms and conditions of this event.</label>
+      </div>
+
+      <button type="submit">Register Now</button>
+    </form>
+  </div>
+
+</body>
+</html>
