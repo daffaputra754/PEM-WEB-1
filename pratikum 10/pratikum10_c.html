@@ -1,0 +1,35 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<h2>FAQ Interaktif</h2>
+
+<div class="faq">
+    <h4 class="tanya">Apa itu HTML?</h4>
+    <p class="jawab">HTML adalah bahasa markup untuk membuat halaman web.</p>
+
+    <h4 class="tanya">Apa itu CSS?</h4>
+    <p class="jawab">CSS digunakan untuk styling.</p>
+
+    <h4 class="tanya">Apa itu JavaScript?</h4>
+    <p class="jawab">JavaScript membuat website interaktif.</p>
+
+    <h4 class="tanya">Apa itu jQuery?</h4>
+    <p class="jawab">jQuery adalah library JavaScript.</p>
+
+    <h4 class="tanya">Apa itu DOM?</h4>
+    <p class="jawab">DOM adalah struktur dokumen HTML.</p>
+</div>
+
+<script>
+$(document).ready(function() {
+    $(".jawab").hide();
+
+    $(".tanya").hover(
+        function() { $(this).css("color", "blue"); },
+        function() { $(this).css("color", "black"); }
+    );
+
+    $(".tanya").click(function() {
+        $(this).next(".jawab").toggle();
+    });
+});
+</script>

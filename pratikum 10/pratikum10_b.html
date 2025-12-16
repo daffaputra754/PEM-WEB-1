@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>To-Do List Modern</title>
+
+<style>
+    body {
+        font-family: "Poppins", sans-serif;
+        background: #f3f6fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .todo-container {
+        width: 350px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    input {
+        width: 94%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        outline: none;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px 15px;
+        margin: 5px 3px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #4a76e2;
+        color: white;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #3a5fc2;
+        transform: translateY(-2px);
+    }
+
+    .btn-delete {
+        background: #e24a4a;
+    }
+    .btn-delete:hover {
+        background: #c73838;
+    }
+
+    ul {
+        padding-left: 18px;
+        margin-top: 15px;
+    }
+
+    li {
+        background: #eef3ff;
+        margin-bottom: 8px;
+        padding: 10px;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: 0.2s;
+    }
+
+    li:hover {
+        background: #dfe7ff;
+        transform: translateX(3px);
+    }
+</style>
+</head>
+
+<body>
+
+<h2>To-Do List</h2>
+
+<div class="todo-container">
+    <input type="text" id="inputTodo" placeholder="Tulis tugas...">
+
+    <button onclick="tambah()">Tambah</button>
+    <button class="btn-delete" onclick="hapusTerakhir()">Hapus Terakhir</button>
+
+    <ul id="listTodo"></ul>
+</div>
+
+<script>
+    function tambah() {
+        const teks = document.getElementById("inputTodo").value.trim();
+        if (teks === "") return;
+
+        const li = document.createElement("li");
+        li.innerHTML = teks;
+
+        document.getElementById("listTodo").appendChild(li);
+        document.getElementById("inputTodo").value = "";
+    }
+
+    function hapusTerakhir() {
+        const list = document.getElementById("listTodo");
+        if (list.lastChild) {
+            list.removeChild(list.lastChild);
+        }
+    }
+</script>
+
+</body>
+</html>

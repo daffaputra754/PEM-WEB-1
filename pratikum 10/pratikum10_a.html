@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Biodata Dinamis Modern</title>
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #f2f6fc;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #biodata {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        #biodata img {
+            width: 150px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 6px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background: #4a76e2;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #3a5fc2;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger { background: #e24a4a; }
+        .btn-danger:hover { background: #c73838; }
+
+        .btn-green { background: #3cb371; }
+        .btn-green:hover { background: #2d8a57; }
+
+        #modal,
+        #modalFoto {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #modalBox, #fotoBox {
+            background: white;
+            padding: 20px;
+            width: 280px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        #modal input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .foto-pilihan {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .foto-pilihan img {
+            width: 80px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .foto-pilihan img:hover {
+            border-color: #4a76e2;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Biodata Mahasiswa</h2>
+
+    <div id="biodata">
+        <p id="nama"><strong>Nama:</strong> Maulad Ardaffa Putra</p>
+        <p id="nim"><strong>NIM:</strong> 0110125147</p>
+        <p id="prodi"><strong>Program Studi:</strong> Sistem Informasi</p>
+        <img id="foto" src="profil.png" alt="Foto Profil">
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="showModal('nama')">Ubah Nama</button>
+    <button class="btn" onclick="showModal('prodi')">Ubah Program Studi</button>
+    <button class="btn" onclick="showFotoModal()">Ganti Foto</button>
+
+    <br>
+
+    <button class="btn btn-danger" onclick="sembunyikan()">Sembunyikan</button>
+    <button class="btn btn-green" onclick="tampilkan()">Tampilkan</button>
+
+    <div id="modal">
+        <div id="modalBox">
+            <h3 id="modalTitle">Edit</h3>
+            <input type="text" id="modalInput">
+            <br><br>
+            <button class="btn-green btn" onclick="simpanPerubahan()">Simpan</button>
+            <button class="btn btn-danger" onclick="closeModal()">Batal</button>
+        </div>
+    </div>
+
+    <div id="modalFoto">
+        <div id="fotoBox">
+            <h3>Pilih Foto</h3>
+            <div class="foto-pilihan">
+                <img src="profile_1.jpg" onclick="gantiFoto('profile_1.jpg')">
+                <img src="profile_2.jpg" onclick="gantiFoto('profile_2.jpg')">
+                <img src="profile_3.png" onclick="gantiFoto('profile_3.png')">
+                <img src="profile_4.png" onclick="gantiFoto('profile_4.png')">
+            </div>
+            <br>
+            <button class="btn btn-danger" onclick="closeFotoModal()">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        let target = "";
+
+        function showModal(data) {
+            target = data;
+            document.getElementById("modal").style.display = "flex";
+
+            const title = data === "nama" ? "Ubah Nama" : 
+                          data === "prodi" ? "Ubah Program Studi" : "";
+
+            document.getElementById("modalTitle").innerText = title;
+            document.getElementById("modalInput").value = "";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function simpanPerubahan() {
+            const value = document.getElementById("modalInput").value.trim();
+            if (!value) return alert("Input tidak boleh kosong!");
+
+            if (target === "nama") {
+                document.getElementById("nama").innerHTML = "<strong>Nama:</strong> " + value;
+            }
+            if (target === "prodi") {
+                document.getElementById("prodi").innerHTML = "<strong>Program Studi:</strong> " + value;
+            }
+
+            closeModal();
+        }
+
+        function showFotoModal() {
+            document.getElementById("modalFoto").style.display = "flex";
+        }
+
+        function closeFotoModal() {
+            document.getElementById("modalFoto").style.display = "none";
+        }
+
+        function gantiFoto(src) {
+            document.getElementById("foto").setAttribute("src", src);
+            closeFotoModal();
+        }
+
+        function sembunyikan() {
+            const bio = document.getElementById("biodata");
+            bio.style.opacity = 0;
+            setTimeout(() => bio.style.display = "none", 300);
+        }
+
+        function tampilkan() {
+            const bio = document.getElementById("biodata");
+            bio.style.display = "block";
+            setTimeout(() => bio.style.opacity = 1, 10);
+        }
+    </script>
+
+</body>
+</html>
